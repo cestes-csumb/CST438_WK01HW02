@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -38,10 +39,15 @@ public class MainActivity extends AppCompatActivity {
                 password = findViewById(R.id.editTextTextPassword);
                 String enteredUsername = username.getText().toString();
                 String enteredPassword = password.getText().toString();
+                Users userslist = new Users();
+                ArrayList<String> usernames = userslist.getUsernames();
+                ArrayList<String> passwords = userslist.getPasswords();
                 //toaster(enteredUsername);
-                if(enteredUsername.equals("admin")){
-                    if (enteredPassword.equals("test")) {
+                if(usernames.contains(enteredUsername)){
+                    int userId = usernames.indexOf(enteredUsername);
+                    if (passwords.get(userId).equals(enteredPassword)) {
                         //use intent factory...
+                        toaster("Login Successful");
                     }else{
                         //toast "incorrect password!"
                         toaster("Incorrect Password!");
