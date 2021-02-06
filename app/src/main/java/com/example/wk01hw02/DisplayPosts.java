@@ -1,3 +1,7 @@
+/*
+Title: DisplayPosts.java
+Purpose: Use retrofit to get results back from API and display only the ones that match the userId passed in
+ */
 package com.example.wk01hw02;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +18,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DisplayPosts extends AppCompatActivity {
+    //Layout elements
     private TextView textViewResult;
 
     @Override
@@ -25,6 +30,10 @@ public class DisplayPosts extends AppCompatActivity {
                 .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        //Get the extras passed in
+        Bundle extras = getIntent().getExtras();
+        Integer userId = extras.getInt("USER_ID");
+        String username = extras.getString("USERNAME");
         //retrofit creates a bunch of code for us, we just need to supply it the interface
         JsonPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JsonPlaceHolderAPI.class);
         Call<List<Post>> call = jsonPlaceHolderAPI.getPosts();
@@ -41,14 +50,19 @@ public class DisplayPosts extends AppCompatActivity {
                 }
                 //this will give us our data from the API
                 List<Post> posts = response.body();
+                String postsContent = "";
+                //Display welcome message
+                postsContent += "Welcome " + username + "!\n\n";
+                textViewResult.append(postsContent);
+                //go through all posts and show only the posts with the specified userId
                 for(Post post : posts){
-                    String postsContent = "";
-                    postsContent += "Post ID: " + post.getId() + "\n";
-                    postsContent += "User ID: " + post.getUserId() + "\n";
-                    postsContent += "Title: " + post.getTitle() + "\n";
-                    postsContent += "Message: " + post.getBody() + "\n\n";
-
-                    textViewResult.append(postsContent);
+                    if(post.getUserId() == userId){
+                        postsContent = "";
+                        postsContent += "Post ID: " + post.getId() + "\n";
+                        postsContent += "Title: " + post.getTitle() + "\n";
+                        postsContent += "Message: " + post.getBody() + "\n\n";
+                        textViewResult.append(postsContent);
+                    }
                 }
             }
 

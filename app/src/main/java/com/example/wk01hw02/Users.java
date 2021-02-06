@@ -1,14 +1,13 @@
 package com.example.wk01hw02;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Users {
+    //ArrayLists for usernames and passwords
     private ArrayList<String> usernames = new ArrayList<>();
     private ArrayList<String> passwords = new ArrayList<>();
     Users(){
+        //Default User Logins (5 total)
         usernames.add("admin");
         passwords.add("password");
         usernames.add("admin2");
@@ -20,6 +19,8 @@ public class Users {
         usernames.add("test");
         passwords.add("test");
     }
+
+    //Getters
 
     public ArrayList<String> getUsernames() {
         return usernames;

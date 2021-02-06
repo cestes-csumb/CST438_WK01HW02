@@ -1,3 +1,7 @@
+/*
+Title: Post.java
+Purpose: layout of our data that is returned by the API
+ */
 package com.example.wk01hw02;
 
 public class Post {

@@ -1,3 +1,7 @@
+/*
+Title: JsonPlaceHolderAPI.java
+Purpose: Used for the retrofit call to actually retrieve data from the API
+ */
 package com.example.wk01hw02;
 
 import java.util.List;
