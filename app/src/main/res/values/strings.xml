@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">WK01HW02</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">LOGIN</string>
 </resources>
